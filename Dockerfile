@@ -1,4 +1,4 @@
-FROM ruby:2.4.1-slim
+FROM ruby:2.4-slim-stretch
 
 ENV DEBIAN_FRONTEND=noninteractive
 
@@ -17,6 +17,8 @@ COPY ./Gemfile.lock /app/
 
 # Set /app as workdir
 WORKDIR /app
+
+EXPOSE 3000
 
 # Install dependencies
 RUN bundle install
