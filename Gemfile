@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.4.1"
+ruby "2.4.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.8'
@@ -61,7 +61,7 @@ gem 'jquery-ui-rails'
 gem 'js-routes'
 gem 'pg'
 gem 'pry-rails', group: :development
-gem 'puma'
+gem 'puma','~>3.11.0'
 gem 'rails_12factor', group: :production
 gem "rails-settings-cached"
 gem 'ransack'
