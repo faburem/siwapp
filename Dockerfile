@@ -22,3 +22,4 @@ EXPOSE 3000
 
 # Install dependencies
 RUN bundle install
+CMD rails server -b 0.0.0.0
