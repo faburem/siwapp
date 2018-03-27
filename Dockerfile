@@ -9,8 +9,8 @@ RUN apt-get update -qq && \
 	libpq-dev \
 	libqt5webkit5-dev \
 	qt5-default \
-	xvfb \
-	openssl-devel
+	xvfb
+RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Copy project src to container
 COPY ./Gemfile /app/
@@ -26,4 +26,4 @@ RUN bundle install
 
 COPY . /app/
 
-CMD bundle exec rails s -p 3000 -b '0.0.0.0'
+CMD /bin/sh -c rm -f /app/tmp/pids/server.pid && rails server -p 3000 -b 0.0.0.0
