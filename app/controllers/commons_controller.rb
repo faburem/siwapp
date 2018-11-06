@@ -56,11 +56,8 @@ class CommonsController < ApplicationController
     respond_to do |format|
       format.html { render sti_template(@type, action_name), layout: 'infinite-scrolling' }
       format.csv do
-        csv_string = model.csv @results
-        send_data csv_string,
-          :type => "text/plain",
-          :filename => "#{@type.underscore.downcase.pluralize}.csv",
-          :disposition => "attachment"
+        set_csv_headers("#{@type.underscore.downcase.pluralize}.csv")
+        self.response_body = model.csv @results
       end
     end
   end
