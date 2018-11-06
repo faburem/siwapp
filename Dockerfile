@@ -1,28 +1,29 @@
-FROM ruby:2.4-slim-stretch
+FROM alpine:latest
+MAINTAINER Fabian Kromer <fabian@kromit.at>
 
-ENV DEBIAN_FRONTEND=noninteractive
-
-RUN apt-get update -qq && \
-	apt-get install -y \
-	build-essential \
-	nodejs \
-	libpq-dev \
-	libqt5webkit5-dev \
-	qt5-default \
-	xvfb
-RUN apt-get clean && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
-
-# Copy project src to container
 COPY ./Gemfile /app/
 COPY ./Gemfile.lock /app/
+WORKDIR /app
+
+# Update and install base packages
+RUN apk update && apk upgrade && apk add curl wget bash build-base nodejs libxml2-dev libxslt-dev libffi-dev qt-webkit qt-dev postgresql-dev ruby ruby-dev ruby-bundler && bundle config build.nokogiri --use-system-libraries && bundle install && apk del curl build-base libxml2-dev libxslt-dev libffi-dev qt-dev postgresql-dev ruby-dev && rm -rf /var/cache/apk/*
+
+# Copy project src to container
+#COPY ./Gemfile /app/
+#COPY ./Gemfile.lock /app/
 
 # Set /app as workdir
-WORKDIR /app
+#WORKDIR /app
 
 EXPOSE 3000
 
 # Install dependencies
-RUN bundle install
+#RUN bundle config build.nokogiri --use-system-libraries
+#RUN bundle install
+
+# cleanup after ourselves
+#RUN apk del curl build-base libxml2-dev libxslt-dev libffi-dev qt-dev postgresql-dev ruby-dev
+#RUN rm -rf /var/cache/apk/*
 
 COPY . /app/
 
