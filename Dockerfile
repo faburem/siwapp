@@ -6,7 +6,7 @@ COPY ./Gemfile.lock /app/
 WORKDIR /app
 
 # Update and install base packages
-RUN apk update && apk upgrade && apk add curl wget bash build-base nodejs libxml2-dev libxslt-dev libffi-dev qt-webkit qt-dev postgresql-dev ruby ruby-dev ruby-bundler && bundle config build.nokogiri --use-system-libraries && bundle install && apk del curl build-base libxml2-dev libxslt-dev libffi-dev qt-dev postgresql-dev ruby-dev && rm -rf /var/cache/apk/*
+RUN apk update && apk upgrade && apk add curl wget bash build-base nodejs libxml2-dev libxslt-dev libffi-dev qt-webkit qt-dev postgresql-dev ruby ruby-dev ruby-bundler && bundle config build.nokogiri --use-system-libraries && bundle install && apk del curl build-base && rm -rf /var/cache/apk/*
 
 # Copy project src to container
 #COPY ./Gemfile /app/
