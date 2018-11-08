@@ -15,7 +15,7 @@ RUN apt-get update -qq && \
 	xvfb && bundle install && \
 	apt-get clean && \
 	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-	apt-get remove build-essential
+	apt-get -yf remove build-essential && apt-get autoremove -yf
 
 # Copy project src to container
 #COPY ./Gemfile /app/
