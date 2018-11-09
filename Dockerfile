@@ -2,8 +2,8 @@ FROM ruby:2.4-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY . /app/
-WORKDIR /app
+#COPY . /app/
+#WORKDIR /app
 
 RUN apt-get update -qq && \
 	apt-get install -y \
@@ -11,24 +11,24 @@ RUN apt-get update -qq && \
 	nodejs \
 	libpq-dev \
 	libqt5webkit5-dev \
-	qt5-default \
-	xvfb && bundle install && \
-	apt-get clean && \
-	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-	apt-get -yf remove build-essential && apt-get autoremove -yf
+	qt5-default xvfb
+#	&& bundle install && \
+#	apt-get clean && \
+#	rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+#	apt-get -yf remove build-essential && apt-get autoremove -yf
 
 # Copy project src to container
-#COPY ./Gemfile /app/
-#COPY ./Gemfile.lock /app/
+COPY ./Gemfile /app/
+COPY ./Gemfile.lock /app/
 
 # Set /app as workdir
-#WORKDIR /app
+WORKDIR /app
 
 EXPOSE 3000
 
 # Install dependencies
-#RUN bundle install
+RUN bundle install
 
-#COPY . /app/
+COPY . /app/
 
 CMD /bin/sh -c rm -f /app/tmp/pids/server.pid && rails server -p 3000 -b 0.0.0.0
