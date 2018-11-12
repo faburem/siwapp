@@ -1,9 +1,24 @@
-FROM ruby:2.4.3-alpine
+FROM ruby:2.4.3-slim
+
+ENV DEBIAN_FRONTEND=noninteractive
 
 COPY . /app/
 WORKDIR /app
 
-RUN apk --update --no-cache add curl wget bash build-base nodejs libgcc libstdc++ libx11 glib libxrender libxext libintl libcrypto1.0 libssl1.0 ttf-dejavu ttf-droid ttf-freefont ttf-liberation ttf-ubuntu-font-family libxml2-dev libxslt-dev libffi-dev qt-webkit qt-dev postgresql-dev && bundle config build.nokogiri --use-system-libraries && bundle install && apk del build-base wget curl
+RUN apt-get update -qq && \
+        apt-get install -y --no-install-recommends \
+        build-essential \
+        nodejs \
+        libpq-dev \
+        libqt5webkit5-dev \
+        qt5-default xvfb \
+        && bundle install && \
+        apt-get clean && \
+        rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+        apt-get -yf remove build-essential libqt5webkit5-dev && apt-get autoremove -yf
+
+# Set /app as workdir
+WORKDIR /app
 
 EXPOSE 3000
 
