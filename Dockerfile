@@ -1,25 +1,29 @@
-FROM ruby:2.4.3-slim
+FROM ruby:2.5.3-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 
-COPY . /app/
-WORKDIR /app
+RUN apt-get update -qq
+RUN apt-get install -y \
+    curl \
+    gnupg2
+RUN curl -sL https://deb.nodesource.com/setup_10.x | bash -
 
-RUN apt-get update -qq && \
-        apt-get install -y --no-install-recommends \
-        build-essential \
-        nodejs \
-        libpq-dev \
-        libqt5webkit5-dev \
-        qt5-default xvfb \
-        && bundle install && \
-        apt-get clean && \
-        rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-        apt-get -yf remove build-essential libqt5webkit5-dev && apt-get autoremove -yf
+RUN	apt-get install -y \
+	build-essential \
+	nodejs \
+	libpq-dev \
+	libqt5webkit5-dev \
+	qt5-default \
+	git \
+	xvfb && \
+    gem install bundler
+
+# Copy project src to container
+COPY ./Gemfile /app/
+COPY ./Gemfile.lock /app/
 
 # Set /app as workdir
 WORKDIR /app
-
 EXPOSE 3000
-
-CMD /bin/sh -c rm -f /app/tmp/pids/server.pid && rails server -p 3000 -b 0.0.0.0
+# Install dependencies
+RUN bundle install
