@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-ruby "2.5.3"
+ruby "2.4.3"
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '5.2.1.1'
@@ -66,7 +66,7 @@ gem 'material_icons'
 gem 'money'
 gem 'pg'
 gem 'pry-rails', group: :development
-gem 'puma'
+gem 'puma','~>3.11.0'
 gem 'rails_12factor', group: :production
 gem 'rails-settings-cached'
 gem 'ransack'
@@ -84,3 +84,4 @@ gem 'http'
 # for translation
 gem 'route_translator'
 gem 'dotenv-rails', groups: [:development, :test]
+gem 'tzinfo-data'

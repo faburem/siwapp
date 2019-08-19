@@ -17,5 +17,6 @@ module Siwapp
     # the framework and any gems in your application.
 
     config.autoload_paths += %W(#{config.root}/lib)
+    config.web_console.whitelisted_ips = ['10.0.0.0/8', '172.0.0.0/8', '192.168.0.0/16']
   end
 end
