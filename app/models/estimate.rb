@@ -1,3 +1,0 @@
-class Estimate < Common
-
-end
