@@ -1,0 +1,55 @@
+.counter {
+  padding: 0.4375rem 0;
+}
+
+.table-select {
+  width: 3rem;
+  text-align: center;
+}
+
+tr[data-href] {
+  cursor: pointer;
+}
+
+td, th {
+  .sort_link {
+    color: inherit;
+  }
+}
+
+.content-loading {
+  margin-bottom: 1rem;
+  text-align: center;
+
+  .loader {
+    width: 3.125rem;
+    height: auto;
+  }
+}
+
+.status {
+  color: white;
+  padding: 0.5rem;
+  font-size: 0.85rem;
+  border-radius: 0.3rem;
+}
+
+.failed {
+  background-color: rgb(55, 58, 60);
+}
+
+.past_due {
+  background-color: $brand-danger;
+}
+
+.draft {
+  background-color: #ddd;
+}
+
+.paid {
+  background-color: $brand-success;
+}
+
+.pending {
+  background-color: #D8B256;
+}

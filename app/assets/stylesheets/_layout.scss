@@ -1,0 +1,59 @@
+body {
+  padding: 0;
+}
+
+.main-body {
+  padding-top: 5rem;
+  padding-bottom: 5rem;
+}
+.ui-autocomplete {
+  max-height: 12.5rem;
+  overflow-y: scroll;
+  overflow-x: hidden;
+}
+
+input[type="date"].form-control {
+  line-height: 1.5 !important;
+}
+
+.form-group label {
+  font-size: 80%;
+  color: $gray-light;
+  text-transform: uppercase;
+}
+
+.code-editor {
+  height: 500px;
+  font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+  font-size: 80%;
+}
+
+.alert-alert {
+  color: red;
+}
+
+.invoice-preview {
+  width: 770px;
+  height: 1090px;
+  border: 2px solid $gray-lighter;
+}
+
+// To place buttons at the bottom right of the page
+.action-buttons {
+  position: fixed;
+  z-index: 1010;
+  bottom: 1rem;
+  right: 1rem;
+  left: 1rem;
+  text-align: right;
+  margin-bottom: 1rem;
+
+  > {
+    .btn-group, .btn {
+      margin-left: .25rem;
+    }
+  }
+  div {
+    display: inline-block;
+  }
+}

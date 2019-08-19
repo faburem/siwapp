@@ -1,0 +1,67 @@
+//
+// Siwapp Navbar
+//
+
+.siwapp-navbar {
+  border-bottom: 1px solid $generic-border-color;
+  position: fixed;
+  width: 100%;
+  z-index: 1010;
+
+	.navbar-brand {
+    display: inline-block;
+    width: 7rem;
+    padding-top: .5rem;
+    padding-bottom: 0;
+
+    img {
+      width: auto;
+      height: 1.75rem;
+    }
+  }
+}
+
+.siwapp-navbar-scroll {
+  @include clearfix;
+  clear: both;
+  padding-left: 1rem;
+  padding-right: 1rem;
+  -webkit-overflow-scrolling: touch;
+  white-space: nowrap;
+  .nav-item {
+    display: inline-block;
+    float: none;
+    &:last-child {
+      margin-right: 1rem;
+    }
+  }
+}
+
+////
+//// Search Form
+////
+
+.siwapp-input-search {
+  display: flex;
+  border: 1px solid $generic-border-color;
+  border-radius: 0.25rem;
+  .form-control {
+    border: none;
+  }
+  .material-icons {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+}
+
+.siwapp-search-filters {
+  position: absolute;
+	background: white;
+  top: 2.9rem;
+  width: 60%;
+}
+
+.siwapp-search-filters__content {
+  padding: 1rem;
+  border: 1px solid $generic-border-color;
+}
