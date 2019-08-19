@@ -6,14 +6,14 @@ WORKDIR /app
 RUN apt-get update -qq && \
         apt-get install -y --no-install-recommends \
         build-essential \
-        nodejs \
         libpq-dev \
         libqt5webkit5-dev \
-        qt5-default xvfb \
+        qt5-default xvfb curl \
+	&& curl -sL https://deb.nodesource.com/setup_10.x | sh - && apt-get install -y nodejs \
         && bundle install && \
         apt-get clean && \
         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
-        apt-get -yf remove build-essential libqt5webkit5-dev && apt-get autoremove -yf 
+        apt-get -yf remove curl build-essential libqt5webkit5-dev && apt-get autoremove -yf 
 
 
 # Set /app as workdir
