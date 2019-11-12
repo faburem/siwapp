@@ -5,7 +5,7 @@ COPY . /app/
 WORKDIR /app
 RUN apt-get update -qq && \
         apt-get install -y --no-install-recommends \
-        build-essential \
+        build-essential git\
         libpq-dev \
         libqt5webkit5-dev \
         qt5-default xvfb curl \
