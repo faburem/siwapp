@@ -11,7 +11,7 @@ RUN apt-get update -qq && \
         qt5-default xvfb curl \
 	libfontconfig1 libxrender1 \
 	&& curl -sL https://deb.nodesource.com/setup_10.x | sh - && apt-get install -y nodejs \
-        && bundle install && \
+        && gem install bundler && bundle install && \
         apt-get clean && \
         rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
         apt-get -yf remove curl build-essential libqt5webkit5-dev && apt-get autoremove -yf 
