@@ -1,8 +1,9 @@
-FROM ruby:2.6.5-slim
+FROM ruby:2.5.7-slim
 
 ENV DEBIAN_FRONTEND=noninteractive
 COPY . /app/
 WORKDIR /app
+RUN bundle config --local build.sassc --disable-march-tune-native
 RUN apt-get update -qq && \
         apt-get install -y --no-install-recommends \
         build-essential git\
